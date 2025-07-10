@@ -12,8 +12,7 @@ The goal is to boost user activation, increase long-term retention, and maximize
   - [Data Cleaning and Preparation](#data-cleaning-and-preparation)
   - [Exploratory Data Analysis](#exploratory-data-analysis)
   - [Data Analysis and Visualisation](#data-analysis-and-visualisation)
-  - [Feature Engineering](#feature-engineering)
-  - [Model Development and Hyperparameter Tuning](#model-development-and-hyperparameter-tuning)
+  - [Feature Engineering for Predictive Modeling](#feature-engineering-for-predictive-modeling)
   - [Model Evaluation](#model-evaluation)
   - [Recommendation](#recommendation)
   - [Limitations](#limitations)
@@ -50,7 +49,21 @@ In a real-world implementation for File.ai, this proxy data would be replaced wi
 ### Exploratory Data Analysis (EDA) - Understanding Engagement Drivers
 A thorough EDA was conducted to identify the key factors correlated with user disengagement in the proxy dataset.
 Key Findings:
-User Lifetime (tenure): Newer users (0-12 months) have a significantly higher disengagement rate (47.7%) compared to long-term users (61-72 months), who have a very low rate (6.6%). This highlights the critical importance of the early onboarding phase.
-Commitment Level (Contract): Users on short-term, 'Month-to-month' plans are far more likely to disengage (42.7%) than those on annual or multi-year plans (<12%).
-Core Feature Adoption (InternetService): Users of the premium 'Fiber optic' service showed a surprisingly high disengagement rate (41.9%). For File.ai, this is a powerful analogy for a scenario where users adopt a premium feature but churn due to potential issues with pricing, usability, or not seeing the expected value.
-Value-Added Features (OnlineSecurity, TechSupport, etc.): Users who do not adopt these optional "sticky" features disengage at a much higher rate (~41%) than those who do (~15%). This suggests that guiding users to adopt a suite of features is key to retention.
+* User Lifetime (tenure): Newer users (0-12 months) have a significantly higher disengagement rate (47.7%) compared to long-term users (61-72 months), who have a very low rate (6.6%). This highlights the critical importance of the early onboarding phase.
+* Commitment Level (Contract): Users on short-term, 'Month-to-month' plans are far more likely to disengage (42.7%) than those on annual or multi-year plans (<12%).
+* Core Feature Adoption (InternetService): Users of the premium 'Fiber optic' service showed a surprisingly high disengagement rate (41.9%). For File.ai, this is a powerful analogy for a scenario where users adopt a premium feature but churn due to potential issues with pricing, usability, or not seeing the expected value.
+* Value-Added Features (OnlineSecurity, TechSupport, etc.): Users who do not adopt these optional "sticky" features disengage at a much higher rate (~41%) than those who do (~15%). This suggests that guiding users to adopt a suite of features is key to retention.
+
+### Feature Engineering for Predictive Modeling
+To enhance the model's predictive power, several features were engineered:
+* Number_of_Optional_Services: A numerical feature was created to count the number of key value-added services each user subscribes to. This acts as a powerful, concise "feature adoption score."
+* One-Hot Encoding: All categorical features were converted into a numerical format using one-hot encoding to make them suitable for the machine learning algorithms.
+
+### Model Evaluation
+After rigorous tuning and comparison, the XGBoost Classifier was selected as the final model due to its superior balance of performance metrics.
+Final XGBoost Model Performance on Unseen Test Data:
+| Metric | Score | Interpretation for File.ai |
+| Recall (Sensitivity) |	80.0% |	The model successfully identifies 80% of all users who are truly at risk of disengaging. This is a huge win for proactive outreach. |
+| F1-Score |	0.63 |	A strong balance between correctly identifying at-risk users (Recall) and not flagging too many safe users (Precision). |
+| Precision |	0.52 |	When the model flags a user as "at-risk," it is correct about 52% of the time. This helps focus retention efforts. |
+| ROC AUC Score |	0.77 |	Indicates good overall discriminatory power, meaning the model is effective at separating at-risk users from engaged users. |
