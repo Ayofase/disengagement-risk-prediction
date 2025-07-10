@@ -62,8 +62,8 @@ To enhance the model's predictive power, several features were engineered:
 ### Model Evaluation
 After rigorous tuning and comparison, the XGBoost Classifier was selected as the final model due to its superior balance of performance metrics.
 Final XGBoost Model Performance on Unseen Test Data:
-| Metric | Score | Interpretation for File.ai |
+| Metric               | Score  | Interpretation for File.ai                                                                                                          |
 | Recall (Sensitivity) |	80.0% |	The model successfully identifies 80% of all users who are truly at risk of disengaging. This is a huge win for proactive outreach. |
-| F1-Score |	0.63 |	A strong balance between correctly identifying at-risk users (Recall) and not flagging too many safe users (Precision). |
-| Precision |	0.52 |	When the model flags a user as "at-risk," it is correct about 52% of the time. This helps focus retention efforts. |
-| ROC AUC Score |	0.77 |	Indicates good overall discriminatory power, meaning the model is effective at separating at-risk users from engaged users. |
+| F1-Score             |	63.0% |	A strong balance between correctly identifying at-risk users (Recall) and not flagging too many safe users (Precision).             |
+| Precision            |	52.0% |	When the model flags a user as "at-risk," it is correct about 52% of the time. This helps focus retention efforts.                  |
+| ROC AUC Score        |	77.0% |	Indicates good overall discriminatory power, meaning the model is effective at separating at-risk users from engaged users.         |
