@@ -14,7 +14,8 @@ The goal is to boost user activation, increase long-term retention, and maximize
   - [Data Analysis and Visualisation](#data-analysis-and-visualisation)
   - [Feature Engineering for Predictive Modeling](#feature-engineering-for-predictive-modeling)
   - [Model Evaluation](#model-evaluation)
-  - [Recommendation](#recommendation)
+  - [Model Insights and Feature Importance](#model-insights-and-feature-importance)
+  - [Business Recommendation](#business-recommendation)
   - [Limitations](#limitations)
   - [Conclusion](#conclusion)
 
@@ -68,3 +69,46 @@ Final XGBoost Model Performance on Unseen Test Data:
 | F1-Score             |	63.0% |	A strong balance between correctly identifying at-risk users (Recall) and not flagging too many safe users (Precision).             |
 | Precision            |	52.0% |	When the model flags a user as "at-risk," it is correct about 52% of the time. This helps focus retention efforts.                  |
 | ROC AUC Score        |	77.0% |	Indicates good overall discriminatory power, meaning the model is effective at separating at-risk users from engaged users.         |
+
+
+![xgb_confusion_matrix](https://github.com/user-attachments/assets/7854bc51-8ba6-44fb-93fe-207db33679c1)
+
+
+### Model Insights and Feature Importance
+The model's predictions are primarily driven by the following factors, providing actionable insights for File.ai:
+
+![feature importance](https://github.com/user-attachments/assets/39fd2bdb-5c3c-4f42-88c0-85ce9f77060b)
+
+* User Lifetime (tenure): The single most important predictor.
+* Commitment Level (Contract): Users on short-term plans are a major flight risk.
+* Core Service Type (InternetService_Fiber optic): Indicates that even users of premium features can be at high risk.
+* num_optional_services: Our engineered feature proved highly valuable, showing that the breadth of feature adoption is key.
+* Billing & Payment Methods: PaymentMethod_Electronic check was a surprisingly strong indicator of risk.
+
+### Business Recommendations
+The insights from both the exploratory data analysis and the final XGBoost model provide a clear, data-driven roadmap for improving user retention and maximizing customer lifetime value for a SaaS platform like File.ai. The following recommendations are based on the model's findings:
+**1. Prioritize High-Risk User Segments with Proactive Outreach:**
+The model can generate a daily or weekly list of users with the highest predicted disengagement risk. Customer Success teams should focus their efforts on these segments first:
+* **New Users (0-12 Months):** This group has the highest risk. Implement an automated, triggered email sequence to guide them through key activation steps in their first 30 days.
+* **Users on Monthly Plans (Contract: Month-to-month):** Offer a small discount (e.g., 10-15%) for switching to an annual plan to increase their commitment.
+* **Users with Low Feature Adoption (num_optional_services = 0 or 1):** Proactively send them tutorials, case studies, or invite them to a webinar showcasing the "sticky" features they aren't using.
+**2. Address the "Premium Feature" Paradox:**
+* **The Finding:** Our proxy data showed users of the premium 'Fiber Optic' service had a surprisingly high churn rate.
+* **The Analogy for File.ai:** This is a critical warning sign for a potential scenario where users adopt an advanced, powerful feature (e.g., "cross-document Q&A" or "API access") but churn anyway.
+* **Recommendation: Use product analytics to investigate this segment. Are they struggling with the feature's complexity? Is the perceived value not matching the price point? Is it buggy? Proactive support and dedicated documentation for these power-user features are essential to retain high-value customers.
+**3. Convert Model Insights into Targeted Marketing & Onboarding:**
+* **Finding:** The PaymentMethod was a strong predictor.
+* **Recommendation:** If certain payment methods correlate with lower risk (e.g., direct credit card vs. invoicing), guide new users towards those options during checkout.
+* **Finding:** Users with dependents or partners (proxies for stable teams/households ) churned less.
+* **Recommendation:** Frame marketing materials around team collaboration and stability. Encourage trial users to invite their team members to File.ai, as collaborative use is likely a strong retention driver.
+**4. Implement a Data-Driven Feedback Loop:**
+For users the model flags as high-risk, trigger an automated, non-intrusive survey (e.g., "On a scale of 1-10, how useful did you find File.ai this week?"). This can provide valuable qualitative data to understand why users are disengaging, complementing the model's who.
+### Limitations
+
+**Proxy Data:** The model was built using a public telecom dataset. While the features serve as excellent analogies for SaaS metrics, a model trained on File.ai's actual user event data would be significantly more accurate and tailored.
+**Static Features:** The dataset is a static snapshot. A production model would be greatly enhanced by incorporating dynamic, time-series features (e.g., trends in query volume over the last 30 days).
+**External Factors:** The model does not account for external factors like competitor actions, pricing changes, or shifts in the user's business needs.
+### Conclusion
+This project successfully demonstrates a complete, end-to-end workflow for building a proactive user disengagement prediction model. By moving beyond simple analysis, we developed and tuned a robust XGBoost classifier capable of identifying 80% of at-risk users, providing a significant opportunity for targeted retention efforts.
+The key takeaway is that user retention is driven by a combination of commitment level (contract type), user lifecycle stage (tenure), and, most importantly, feature adoption. The engineered num_optional_services feature proved to be a highly valuable predictor.
+For a SaaS company like File.ai, implementing such a framework is not just about reducing churn, it's about systematically understanding user behavior, optimizing the onboarding journey, and building a more "sticky" product. By identifying and engaging at-risk users before they become inactive, this predictive model serves as a tool to enhance customer success and drive sustainable growth. Future work should focus on training this framework on real product usage data and integrating it into a live operational workflow.
