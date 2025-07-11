@@ -9,13 +9,11 @@ The goal is to boost user activation, increase long-term retention, and maximize
   - [Project Goals](#project-goals)
   - [Data source](#data-source)
   - [Tools](#tools)
-  - [Data Cleaning and Preparation](#data-cleaning-and-preparation)
   - [Exploratory Data Analysis](#exploratory-data-analysis)
-  - [Data Analysis and Visualisation](#data-analysis-and-visualisation)
   - [Feature Engineering for Predictive Modeling](#feature-engineering-for-predictive-modeling)
   - [Model Evaluation](#model-evaluation)
   - [Model Insights and Feature Importance](#model-insights-and-feature-importance)
-  - [Business Recommendation](#business-recommendation)
+  - [Business Recomendations](#business-recommendations)
   - [Limitations](#limitations)
   - [Conclusion](#conclusion)
 
@@ -47,7 +45,7 @@ In a real-world implementation for File.ai, this proxy data would be replaced wi
   - Libraries: Pickle for saving the final model.
  
 
-### Exploratory Data Analysis (EDA) - Understanding Engagement Drivers
+### Exploratory Data Analysis 
 A thorough EDA was conducted to identify the key factors correlated with user disengagement in the proxy dataset.
 Key Findings:
 * User Lifetime (tenure): Newer users (0-12 months) have a significantly higher disengagement rate (47.7%) compared to long-term users (61-72 months), who have a very low rate (6.6%). This highlights the critical importance of the early onboarding phase.
