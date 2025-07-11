@@ -109,9 +109,9 @@ The model can generate a daily or weekly list of users with the highest predicte
 For users the model flags as high-risk, trigger an automated, non-intrusive survey (e.g., "On a scale of 1-10, how useful did you find File.ai this week?"). This can provide valuable qualitative data to understand why users are disengaging, complementing the model's who.
 ### Limitations
 
-**Proxy Data:** The model was built using a public telecom dataset. While the features serve as excellent analogies for SaaS metrics, a model trained on File.ai's actual user event data would be significantly more accurate and tailored.
-**Static Features:** The dataset is a static snapshot. A production model would be greatly enhanced by incorporating dynamic, time-series features (e.g., trends in query volume over the last 30 days).
-**External Factors:** The model does not account for external factors like competitor actions, pricing changes, or shifts in the user's business needs.
+* **Proxy Data:** The model was built using a public telecom dataset. While the features serve as excellent analogies for SaaS metrics, a model trained on File.ai's actual user event data would be significantly more accurate and tailored.
+* **Static Features:** The dataset is a static snapshot. A production model would be greatly enhanced by incorporating dynamic, time-series features (e.g., trends in query volume over the last 30 days).
+* **External Factors:** The model does not account for external factors like competitor actions, pricing changes, or shifts in the user's business needs.
 ### Conclusion
 This project successfully demonstrates a complete, end-to-end workflow for building a proactive user disengagement prediction model. By moving beyond simple analysis, we developed and tuned a robust XGBoost classifier capable of identifying 80% of at-risk users, providing a significant opportunity for targeted retention efforts.
 The key takeaway is that user retention is driven by a combination of commitment level (contract type), user lifecycle stage (tenure), and, most importantly, feature adoption. The engineered num_optional_services feature proved to be a highly valuable predictor.
