@@ -87,20 +87,24 @@ The model's predictions are primarily driven by the following factors, providing
 
 ### Business Recommendations
 The insights from both the exploratory data analysis and the final XGBoost model provide a clear, data-driven roadmap for improving user retention and maximizing customer lifetime value for a SaaS platform like File.ai. The following recommendations are based on the model's findings:
+
 **1. Prioritize High-Risk User Segments with Proactive Outreach:**
 The model can generate a daily or weekly list of users with the highest predicted disengagement risk. Customer Success teams should focus their efforts on these segments first:
 * **New Users (0-12 Months):** This group has the highest risk. Implement an automated, triggered email sequence to guide them through key activation steps in their first 30 days.
 * **Users on Monthly Plans (Contract: Month-to-month):** Offer a small discount (e.g., 10-15%) for switching to an annual plan to increase their commitment.
 * **Users with Low Feature Adoption (num_optional_services = 0 or 1):** Proactively send them tutorials, case studies, or invite them to a webinar showcasing the "sticky" features they aren't using.
+  
 **2. Address the "Premium Feature" Paradox:**
 * **The Finding:** Our proxy data showed users of the premium 'Fiber Optic' service had a surprisingly high churn rate.
 * **The Analogy for File.ai:** This is a critical warning sign for a potential scenario where users adopt an advanced, powerful feature (e.g., "cross-document Q&A" or "API access") but churn anyway.
-* **Recommendation: Use product analytics to investigate this segment. Are they struggling with the feature's complexity? Is the perceived value not matching the price point? Is it buggy? Proactive support and dedicated documentation for these power-user features are essential to retain high-value customers.
+* **Recommendation:** Use product analytics to investigate this segment. Are they struggling with the feature's complexity? Is the perceived value not matching the price point? Is it buggy? Proactive support and dedicated documentation for these power-user features are essential to retain high-value customers.
+
 **3. Convert Model Insights into Targeted Marketing & Onboarding:**
 * **Finding:** The PaymentMethod was a strong predictor.
 * **Recommendation:** If certain payment methods correlate with lower risk (e.g., direct credit card vs. invoicing), guide new users towards those options during checkout.
 * **Finding:** Users with dependents or partners (proxies for stable teams/households ) churned less.
 * **Recommendation:** Frame marketing materials around team collaboration and stability. Encourage trial users to invite their team members to File.ai, as collaborative use is likely a strong retention driver.
+  
 **4. Implement a Data-Driven Feedback Loop:**
 For users the model flags as high-risk, trigger an automated, non-intrusive survey (e.g., "On a scale of 1-10, how useful did you find File.ai this week?"). This can provide valuable qualitative data to understand why users are disengaging, complementing the model's who.
 ### Limitations
