@@ -77,8 +77,6 @@ Final XGBoost Model Performance on Unseen Test Data:
 ### Model Insights and Feature Importance
 The model's predictions are primarily driven by the following factors, providing actionable insights for File.ai:
 
-![feature importance](https://github.com/user-attachments/assets/39fd2bdb-5c3c-4f42-88c0-85ce9f77060b)
-
 * User Lifetime (tenure): The single most important predictor.
 * Commitment Level (Contract): Users on short-term plans are a major flight risk.
 * Core Service Type (InternetService_Fiber optic): Indicates that even users of premium features can be at high risk.
