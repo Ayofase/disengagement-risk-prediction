@@ -90,7 +90,7 @@ The insights from both the exploratory data analysis and the final XGBoost model
 The model can generate a daily or weekly list of users with the highest predicted disengagement risk. Customer Success teams should focus their efforts on these segments first:
 * **New Users (0-12 Months):** This group has the highest risk. Implement an automated, triggered email sequence to guide them through key activation steps in their first 30 days.
 * **Users on Monthly Plans (Contract: Month-to-month):** Offer a small discount (e.g., 10-15%) for switching to an annual plan to increase their commitment.
-* **Users with Low Feature Adoption (num_optional_services = 0 or 1):** Proactively send them tutorials, case studies, or invite them to a webinar showcasing the "sticky" features they aren't using.
+* **Users with Low Feature Adoption (num_optional_services):** Proactively send them tutorials, case studies, or invite them to a webinar showcasing the "sticky" features they aren't using.
   
 **2. Address the "Premium Feature" Paradox:**
 * **The Finding:** Our proxy data showed users of the premium 'Fiber Optic' service had a surprisingly high churn rate.
